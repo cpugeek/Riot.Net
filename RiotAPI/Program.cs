@@ -8,34 +8,77 @@ using Newtonsoft.Json;
 
 namespace RiotAPI
 {
+    /// <summary>
+    /// Current information about a champion.  The champion is identified by its ID and its current status for gameplay is represented by this class.  
+    /// </summary>
     public class Champion
     {
+        /// <summary>
+        /// The ID of the champion,  use the static data to learn more about this champion.
+        /// </summary>
         public int id { get; set;}
+        /// <summary>
+        /// Is the champion available to play right now?
+        /// </summary>
         public bool active { get; set; }
+        /// <summary>
+        /// Is the champion playable by bots in customs?
+        /// </summary>
         public bool botEnabled { get; set; }
+        /// <summary>
+        /// Is the champion free to play right now?
+        /// </summary>
         public bool freeToPlay { get; set; }
+        /// <summary>
+        /// Is the champion playable by bots in matchmaking?
+        /// </summary>
         public bool botMmEnabled { get; set; }
+        /// <summary>
+        /// Is the champion playable in ranked?
+        /// </summary>
         public bool rankedPlayEnabled { get; set; }
     }
 
+    /// <summary>
+    /// A full list of all the champions currently if requested from the server.
+    /// </summary>
     public class ChampionList
     {
+        /// <summary>
+        /// Individual champion entries.
+        /// </summary>
         public List<Champion> champions { get; set; }
     }
 
+    /// <summary>
+    /// A player on your team or the enemy team in a recent game.
+    /// </summary>
     public class FellowPlayer
     {
+        /// <summary>
+        /// The ID of the champion,  use the static data to learn more about this champion.
+        /// </summary>
         public int championId { get; set; }
+        /// <summary>
+        /// The team they played on.  100 is blue,  200 is purple.
+        /// </summary>
         public int teamId { get; set; }
+        /// <summary>
+        /// The ID of the summoner,  use the static data to learn more about this summoner.
+        /// </summary>
         public int summonerId { get; set; }
     }
 
     public class Stats
     {
-        public int totalDamageDealtToChampions { get; set; }
-        public int item2 { get; set; }
-        public int goldEarned { get; set; }
         public int item1 { get; set; }
+        public int item2 { get; set; }
+        public int item3 { get; set; }
+        public int item4 { get; set; }
+        public int item5 { get; set; }
+        public int? item6 { get; set; }
+        public int totalDamageDealtToChampions { get; set; }
+        public int goldEarned { get; set; }
         public int wardPlaced { get; set; }
         public int totalDamageTaken { get; set; }
         public int physicalDamageDealtPlayer { get; set; }
@@ -58,9 +101,6 @@ namespace RiotAPI
         public int totalDamageDealt { get; set; }
         public int largestKillingSpree { get; set; }
         public int totalHeal { get; set; }
-        public int item4 { get; set; }
-        public int item3 { get; set; }
-        public int item5 { get; set; }
         public int minionsKilled { get; set; }
         public int timePlayed { get; set; }
         public int physicalDamageDealtToChampions { get; set; }
@@ -72,7 +112,6 @@ namespace RiotAPI
         public int? trueDamageDealtToChampions { get; set; }
         public int? neutralMinionsKilledYourJungle { get; set; }
         public int? sightWardsBought { get; set; }
-        public int? item6 { get; set; }
         public int? neutralMinionsKilled { get; set; }
         public int? turretsKilled { get; set; }
         public int? neutralMinionsKilledEnemyJungle { get; set; }
@@ -280,7 +319,7 @@ namespace RiotAPI
     {
         static void Main(string[] args)
         {
-            RiotAPI Riot = new RiotAPI("2a7d0445-b201-4269-b6b5-74304b468631","Test",100);
+            RiotAPI Riot = new RiotAPI("60104dba-278e-4150-8ca2-102d7688f93a", "Test", 100);
             Leagues list = Riot.GetSummonerLeagueEntries("na", 20873839);
             while (true)
             {
